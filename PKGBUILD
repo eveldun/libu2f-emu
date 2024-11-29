@@ -34,6 +34,7 @@ noextract=()
 #validpgpkeys=() Fill in later
 
 prepare() {
+tar -xvf "$pkgname-$pkgver"
 export CPATH=/usr/include/openssl-1.1/
 #export LD_LIBRARY_PATH=/usr/lib/openssl-1.1/
 export CFLAGS="-O2 -Wall -Wformat -Wformat=2 -Wconversion -Wimplicit-fallthrough \
