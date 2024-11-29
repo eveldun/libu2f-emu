@@ -7,6 +7,7 @@
 pkgname=libu2f-emu
 pkgver=0.1.0
 pkgrel=1.0
+pkgdir=./src
 pkgdesc="Libu2f-emu, provides a C Library for the U2F device emulations."
 arch=('x86_64')
 url="https://github.com/eveldun/libu2f-emu"
@@ -29,12 +30,12 @@ options=()
 install=
 changelog=
 source=("https://github.com/eveldun/libu2f-emu/archive/refs/tags/${pkgname}-${pkgver}.tar.gz")
-noextract=()
-#sha256sums=() Fill in later
+#noextract=()
+sha256sums=(78f3f6afaaa0aa6d8a7956937dac9be83182c720508d19866738b05597b3751f) 
 #validpgpkeys=() Fill in later
 
 prepare() {
-tar -xvf "$pkgname-$pkgver"
+export worksrc="${pkgname}-${pkgname}-${pkgver}"
 export CPATH=/usr/include/openssl-1.1/
 #export LD_LIBRARY_PATH=/usr/lib/openssl-1.1/
 export CFLAGS="-O2 -Wall -Wformat -Wformat=2 -Wconversion -Wimplicit-fallthrough \
@@ -50,18 +51,17 @@ export CFLAGS="-O2 -Wall -Wformat -Wformat=2 -Wconversion -Wimplicit-fallthrough
 }
 
 build() {
-	cd "$pkgname-$pkgver"
-	./autogen.sh
-  ./configure --prefix=/usr
+	cd $SRCDEST/src/$worksrc
+	./autogen.sh && ./configure
 	make
 }
 
 check() {
-	cd "$pkgname-$pkgver"
+	cd "$worksrc"
 	make -k check
 }
 
 package() {
-	cd "$pkgname-$pkgver"
+	cd "$worksrc"
 	make DESTDIR="$pkgdir/" install
 }
