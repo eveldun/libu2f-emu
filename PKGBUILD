@@ -7,8 +7,6 @@
 pkgname=libu2f-emu
 pkgver=0.1.0
 pkgrel=1.0
-pkgdir=./src
-pkgsrc=./src/$pkgname-$pkgver
 pkgdesc="Libu2f-emu, provides a C Library for the U2F device emulations."
 arch=('x86_64')
 url="https://github.com/eveldun/libu2f-emu"
@@ -53,11 +51,11 @@ build() {
 }
 
 check() {
-	cd "$srcdir/build"
+	cd $srcdir/$pkgname-$pkgver/build
 	make -k check
 }
 
 package() {
-	cd "$pkgsource/build"
+	cd $srcdir/$pkgname-$pkgver/build
 	make DESTDIR="$pkgdir/" install
 }
