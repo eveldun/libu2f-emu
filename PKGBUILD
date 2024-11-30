@@ -30,21 +30,23 @@ install=
 changelog=
 source=("https://github.com/eveldun/libu2f-emu/archive/refs/tags/${pkgver}.tar.gz")
 #noextract=()
-sha256sums=(78f3f6afaaa0aa6d8a7956937dac9be83182c720508d19866738b05597b3751f) 
-#validpgpkeys=() Fill in later
+sha256sums=(ed5fa2936b3b4c60c6128bec174fa5cea969d9ebf20e36e65f66ff8299c9c3b7) 
+validpgpkeys=() 
 
 prepare() {
 
+
+#I know i could make this into one variable and be more efficient but im not sure about the rules on that
+rm -rf $srcdir/$pkgname-$pkgver/build
+
 export CPATH=/usr/include/openssl-1.1/
-mkdir $srcdir/$pkgname-$pkgver/build
 
 }
 
 build() {
-  
+  mkdir $srcdir/$pkgname-$pkgver/build 
    cd $srcdir/$pkgname-$pkgver/build
-  ./autogen
-  ./configure --prefix=/usr
+  ../autogen.sh && ../configure --prefix=/usr
   cmake .. && make
 
 
