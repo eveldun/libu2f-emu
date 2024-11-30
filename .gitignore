@@ -49,3 +49,8 @@ doc
 *.gcno
 *.gcov
 .u2f.tmp
+
+#makepkg
+pkg
+src
+*.tar.gz

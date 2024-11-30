@@ -21,7 +21,7 @@ makedepends=('gtest'
              'autoconf'
              'automake'
              'pkgconf'
-)
+             'cmake')
 optdepends=('doxygen: Documentation Support'
             'dot: Pretty Documentation Support'
   )
@@ -29,39 +29,31 @@ provides=('libu2f-emu')
 options=()
 install=
 changelog=
-source=("https://github.com/eveldun/libu2f-emu/archive/refs/tags/${pkgname}-${pkgver}.tar.gz")
+source=("https://github.com/eveldun/libu2f-emu/archive/refs/tags/${pkgver}.tar.gz")
 #noextract=()
 sha256sums=(78f3f6afaaa0aa6d8a7956937dac9be83182c720508d19866738b05597b3751f) 
 #validpgpkeys=() Fill in later
 
 prepare() {
-export worksrc="${pkgname}-${pkgname}-${pkgver}"
+
 export CPATH=/usr/include/openssl-1.1/
-#export LD_LIBRARY_PATH=/usr/lib/openssl-1.1/
-export CFLAGS="-O2 -Wall -Wformat -Wformat=2 -Wconversion -Wimplicit-fallthrough \
--Werror=format-security \
--U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3 \
--D_GLIBCXX_ASSERTIONS \
--fstrict-flex-arrays=3 \
--fstack-clash-protection -fstack-protector-strong \
--Wl,-z,nodlopen -Wl,-z,noexecstack \
--Wl,-z,relro -Wl,-z,now \
--Wl,--as-needed -Wl,--no-copy-dt-needed-entries
-"
+mkdir $SRCPKGDEST/build
+
 }
 
 build() {
-	cd $SRCDEST/src/$worksrc
+	
+  cd $SRCPKGDEST/build
 	./autogen.sh && ./configure
-	make
+   cmake $SRCPKGDEST & make 
 }
 
 check() {
-	cd "$worksrc"
+	cd "$worksrc/build"
 	make -k check
 }
 
 package() {
-	cd "$worksrc"
+	cd "$worksrc/build"
 	make DESTDIR="$pkgdir/" install
 }
