@@ -1,5 +1,4 @@
 export CPATH=/usr/include/openssl-1.1
-export alias clean=git clean -dfx
 echo "CPATH Set: ${CPATH}"
 echo "LD_FLAGS Set ${LD_FLAGS}"
 export PROMPT_COMMAND='PS1_CMD1=$(pwd)';
