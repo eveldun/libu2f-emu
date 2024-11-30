@@ -150,7 +150,8 @@ TEST(MessageBlankOverflow, Message)
 {
     /* Given */
     struct message *message = NULL;
-    char data[1 << 15];
+    
+    static char data[1 << 15];
 
     /* When */
     message = message_new_from_data(BROADCAST_CID, CMD_INIT,
