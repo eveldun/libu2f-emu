@@ -1,9 +1,12 @@
 AC_PREREQ([2.69])
 AC_INIT([libu2f-emu],
-        [0.0.0],
+        [0.1.0],
         [cesar.belley@lse.epita.fr],
+        [eveldun123@protonmail.com]
         [libu2f-emu],
-        [https://github.com/MattGorko/libu2f-emu])
+        [https://github.com/MattGorko/libu2f-emu]
+        [https://github.com/eveldun/libu2f-emu]
+        )
 
 # Config
 AC_CONFIG_MACRO_DIRS([m4])
@@ -11,8 +14,8 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 
 # Subst
-AC_SUBST([SO_VERSION], [0:0:0])
-AC_SUBST([version], [0.0.0])
+AC_SUBST([SO_VERSION], [0:1:0])
+AC_SUBST([version], [0.1.0])
 
 # Automake
 AM_INIT_AUTOMAKE([
