@@ -4,6 +4,9 @@
 # then please put 'unknown'.
 
 # Maintainer: Eveldun <eveldun123@protonmail.com>
+# sorry for my sub-par code i am working on learning 
+# i will come back and improve this code in the near future
+
 pkgname=libu2f-emu
 pkgver=0.1.0
 pkgrel=1.0
@@ -22,8 +25,7 @@ makedepends=('gtest'
              'pkgconf'
              'cmake')
 optdepends=('doxygen: Documentation Support'
-            'dot: Pretty Documentation Support'
-  )
+            'dot: Pretty Documentation Support')
 provides=('libu2f-emu')
 options=()
 install=
@@ -51,6 +53,7 @@ build() {
   cmake .. && make u2f-emu u2f-emu-bluetooth u2f-emu-nfc u2f-emu-usb
 
 
+
 }
 
 check() {
@@ -59,6 +62,11 @@ check() {
 }
 
 package() {
+ 
 	cd $srcdir/$pkgname-$pkgver/build
 	make DESTDIR="$pkgdir/" install
+  #We copy the script in srcdir/$pkgname-$pkgver/scripts/libu2fsetup.sh to /bin as a setup script feel free to view the source
+  mkdir $pkgdir/usr/bin && mv $srcdir/$pkgname-$pkgver/scripts/libu2fsetup.sh $pkgdir/usr/bin
+  chmod +x $pkgdir/usr/bin/*
+
 }
