@@ -38,7 +38,7 @@ prepare() {
 
 #I know i could make this into one variable and be more efficient but im not sure about the rules on that
 rm -rf $srcdir/$pkgname-$pkgver/build
-
+export CMAKE_INSTALL_PREFIX=/usr
 export CPATH=/usr/include/openssl-1.1/
 
 }
@@ -48,7 +48,7 @@ build() {
    cd $srcdir/$pkgname-$pkgver
   ./autogen.sh && ./configure --prefix=/usr
   cd $srcdir/$pkgname-$pkgver/build
-  cmake .. && make u2f-emu u2f-emu-bluetooth u2f-emu-nfc u2f-emu-usb usb
+  cmake .. && make u2f-emu u2f-emu-bluetooth u2f-emu-nfc u2f-emu-usb
 
 
 }
