@@ -45,9 +45,10 @@ export CPATH=/usr/include/openssl-1.1/
 
 build() {
   mkdir $srcdir/$pkgname-$pkgver/build 
-   cd $srcdir/$pkgname-$pkgver/build
-  ../autogen.sh && ../configure --prefix=/usr
-  cmake .. && make u2f-emu usb 
+   cd $srcdir/$pkgname-$pkgver
+  ./autogen.sh && ./configure --prefix=/usr
+  cd $srcdir/$pkgname-$pkgver/build
+  cmake .. && make u2f-emu u2f-emu-bluetooth u2f-emu-nfc u2f-emu-usb usb
 
 
 }
