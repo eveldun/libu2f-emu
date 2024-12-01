@@ -66,7 +66,7 @@ package() {
 	cd $srcdir/$pkgname-$pkgver/build
 	make DESTDIR="$pkgdir/" install
   #We copy the script in srcdir/$pkgname-$pkgver/scripts/libu2fsetup.sh to /bin as a setup script feel free to view the source
-  mkdir $pkgdir/usr/bin && mv $srcdir/$pkgname-$pkgver/scripts/libu2fsetup.sh $pkgdir/usr/bin
+  mkdir $pkgdir/usr/bin && cp $srcdir/$pkgname-$pkgver/scripts/libu2fsetup.sh $pkgdir/usr/bin
   chmod +x $pkgdir/usr/bin/*
 
 }
