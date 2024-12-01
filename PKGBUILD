@@ -47,7 +47,7 @@ build() {
   mkdir $srcdir/$pkgname-$pkgver/build 
    cd $srcdir/$pkgname-$pkgver/build
   ../autogen.sh && ../configure --prefix=/usr
-  cmake .. && make
+  cmake .. && make u2f-emu usb 
 
 
 }
