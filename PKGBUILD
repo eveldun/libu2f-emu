@@ -40,8 +40,8 @@ prepare() {
 
 #I know i could make this into one variable and be more efficient but im not sure about the rules on that
 rm -rf $srcdir/$pkgname-$pkgver/build
-export CMAKE_INSTALL_PREFIX=/usr
-export CPATH=/usr/include/openssl-1.1/
+export CMAKE_INSTALL_PREFIX=/usr && export CPATH=/usr/include/openssl-1.1/
+export PROJECT_VERSION=$pkgver
 
 }
 
